@@ -1202,6 +1202,530 @@
     }
   }
 
+  /* ============ SCORECARD SECTION ============ */
+  .scorecard-section {
+    background: var(--bg-warm);
+    border-top: 1px solid var(--rule-strong);
+  }
+
+  .sub-header {
+    font-family: var(--display);
+    font-weight: 300;
+    font-style: italic;
+    font-size: clamp(24px, 3vw, 36px);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin-bottom: 3vh;
+    margin-top: 8vh;
+    color: var(--paper);
+  }
+
+  /* Aggregate Wins Hero Stat */
+  .aggregate-wins {
+    margin-top: 4vh;
+    max-width: 1500px;
+  }
+
+  .agg-header {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--paper-dim);
+    margin-bottom: 3vh;
+    opacity: 0.7;
+  }
+
+  .agg-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  @media (min-width: 900px) {
+    .agg-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  .agg-tile {
+    background: var(--bg);
+    border: 1px solid var(--rule);
+    padding: 38px 32px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.3, 1);
+  }
+
+  .agg-tile:hover { transform: translateY(-4px); }
+
+  .agg-tile::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: var(--rule);
+  }
+
+  .agg-tile.claude::before { background: var(--claude); }
+  .agg-tile.gpt::before { background: var(--gpt); }
+  .agg-tile.gemini::before { background: var(--gemini); }
+
+  .agg-tile .agg-name {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--paper-dim);
+    margin-bottom: 24px;
+  }
+
+  .agg-tile.claude .agg-name { color: var(--claude); }
+  .agg-tile.gpt .agg-name { color: var(--gpt-soft); }
+  .agg-tile.gemini .agg-name { color: var(--gemini); }
+
+  .agg-score {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin-bottom: 22px;
+    padding-bottom: 22px;
+    border-bottom: 1px dashed var(--rule);
+  }
+
+  .score-big {
+    font-family: var(--display);
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(80px, 11vw, 130px);
+    line-height: 0.85;
+    letter-spacing: -0.05em;
+  }
+
+  .agg-tile.claude .score-big { color: var(--claude-soft); }
+  .agg-tile.gpt .score-big { color: var(--gpt-soft); }
+  .agg-tile.gemini .score-big { color: var(--gemini-soft); }
+
+  .score-of {
+    font-family: var(--mono);
+    font-size: 14px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--paper-dim);
+    opacity: 0.7;
+  }
+
+  .agg-detail {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    line-height: 1.6;
+    letter-spacing: 0.05em;
+    color: var(--paper-dim);
+    margin-bottom: 16px;
+  }
+
+  .agg-tag {
+    font-family: var(--display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 1.3;
+    color: var(--paper);
+  }
+
+  /* Verdict table */
+  .verdict-section {
+    margin-top: 4vh;
+    max-width: 1500px;
+  }
+
+  .verdict-table {
+    background: var(--bg);
+    border: 1px solid var(--rule);
+  }
+
+  .verdict-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  @media (min-width: 1000px) {
+    .verdict-row {
+      grid-template-columns: 1.1fr 1fr 1fr 1fr 1.4fr;
+    }
+  }
+
+  .verdict-row:last-child { border-bottom: none; }
+
+  .verdict-row.header {
+    background: rgba(244, 237, 224, 0.03);
+  }
+
+  .vr-cell {
+    padding: 22px 22px;
+    border-right: 1px solid var(--rule);
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .verdict-row > .vr-cell:last-child { border-right: none; }
+
+  @media (max-width: 999px) {
+    .vr-cell {
+      border-right: none;
+      border-bottom: 1px solid var(--rule);
+      padding: 18px 22px;
+    }
+    .verdict-row > .vr-cell:last-child { border-bottom: none; }
+    .verdict-row.header { display: none; }
+  }
+
+  .verdict-row.header .vr-cell {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--paper-dim);
+    padding-top: 18px;
+    padding-bottom: 18px;
+  }
+
+  .verdict-row.header .vr-cell.gpt-j { color: var(--gpt-soft); }
+  .verdict-row.header .vr-cell.gemini-j { color: var(--gemini); }
+  .verdict-row.header .vr-cell.claude-j { color: var(--claude); }
+
+  .vr-cell.challenge .ch-title {
+    font-family: var(--display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 1.15;
+    margin-bottom: 6px;
+    color: var(--paper);
+    letter-spacing: -0.01em;
+  }
+
+  .vr-cell.challenge .ch-sub {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--paper-dim);
+    opacity: 0.7;
+  }
+
+  .vr-cell .rank {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 6px 0;
+    font-family: var(--display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 16px;
+    color: var(--paper);
+  }
+
+  .vr-cell .rank-note {
+    font-family: var(--display);
+    font-style: italic;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 1.45;
+    color: var(--paper-dim);
+  }
+
+  .medal {
+    font-family: var(--mono);
+    font-size: 9.5px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 2px;
+    font-style: normal;
+    font-weight: 500;
+    min-width: 34px;
+    text-align: center;
+  }
+
+  .medal.gold {
+    background: rgba(245, 166, 35, 0.15);
+    color: #f5a623;
+    border: 1px solid rgba(245, 166, 35, 0.35);
+  }
+
+  .medal.silver {
+    background: rgba(217, 208, 191, 0.08);
+    color: var(--paper-dim);
+    border: 1px solid var(--rule-strong);
+  }
+
+  .medal.bronze {
+    background: rgba(194, 97, 63, 0.08);
+    color: var(--claude-soft);
+    border: 1px solid rgba(194, 97, 63, 0.25);
+    opacity: 0.7;
+  }
+
+  .vr-cell.consensus .con-headline {
+    font-family: var(--display);
+    font-style: italic;
+    font-weight: 500;
+    font-size: 16px;
+    color: var(--paper);
+    margin-bottom: 8px;
+    line-height: 1.25;
+  }
+
+  .vr-cell.consensus .con-detail {
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--paper-dim);
+  }
+
+  /* Awards Section */
+  .awards-section {
+    margin-top: 4vh;
+    max-width: 1500px;
+  }
+
+  .awards-intro {
+    font-family: var(--display);
+    font-style: italic;
+    font-size: 18px;
+    line-height: 1.4;
+    color: var(--paper-dim);
+    margin-bottom: 4vh;
+    max-width: 720px;
+  }
+
+  .awards-intro em {
+    color: var(--paper);
+    font-style: italic;
+  }
+
+  .awards-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin-bottom: 5vh;
+  }
+
+  @media (min-width: 600px) {
+    .awards-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (min-width: 1000px) {
+    .awards-grid { grid-template-columns: repeat(4, 1fr); }
+  }
+
+  .award {
+    background: var(--bg);
+    border: 1px solid var(--rule);
+    padding: 22px 22px 24px;
+    position: relative;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+
+  .award:hover {
+    transform: translateY(-2px);
+    border-color: var(--rule-strong);
+  }
+
+  .award::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px;
+    height: 100%;
+  }
+
+  .award.claude-a::before { background: var(--claude); }
+  .award.gpt-a::before { background: var(--gpt); }
+  .award.gemini-a::before { background: var(--gemini); }
+
+  .award-cat {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--paper-dim);
+    margin-bottom: 14px;
+    line-height: 1.4;
+    min-height: 32px;
+  }
+
+  .award-winner {
+    font-family: var(--display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 1;
+    letter-spacing: -0.01em;
+  }
+
+  .award.claude-a .award-winner { color: var(--claude-soft); }
+  .award.gpt-a .award-winner { color: var(--gpt-soft); }
+  .award.gemini-a .award-winner { color: var(--gemini-soft); }
+
+  /* Tally bars */
+  .award-tally {
+    background: var(--bg);
+    border: 1px solid var(--rule);
+    padding: 28px 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .tally-row {
+    display: grid;
+    grid-template-columns: 14px 100px 1fr 40px;
+    align-items: center;
+    gap: 18px;
+  }
+
+  .tally-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+  }
+
+  .dot-claude { background: var(--claude); }
+  .dot-gpt { background: var(--gpt); }
+  .dot-gemini { background: var(--gemini); }
+
+  .tally-name {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--paper);
+  }
+
+  .tally-bar {
+    height: 8px;
+    background: var(--rule);
+    border-radius: 2px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .bar-fill {
+    display: block;
+    height: 100%;
+    transition: width 1.6s cubic-bezier(0.2, 0.8, 0.3, 1) 0.3s;
+    width: 0 !important;
+    border-radius: 2px;
+  }
+
+  .award-tally.animated .bar-fill.claude-fill { width: 37.5% !important; background: var(--claude); }
+  .award-tally.animated .bar-fill.gpt-fill { width: 37.5% !important; background: var(--gpt); }
+  .award-tally.animated .bar-fill.gemini-fill { width: 25% !important; background: var(--gemini); }
+
+  .tally-num {
+    font-family: var(--display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 28px;
+    color: var(--paper);
+    text-align: right;
+    line-height: 1;
+  }
+
+  /* Disagreements */
+  .disagreements {
+    margin-top: 4vh;
+    max-width: 1500px;
+  }
+
+  .disagreement-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin-top: 3vh;
+  }
+
+  @media (min-width: 900px) {
+    .disagreement-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  .disagree-card {
+    background: var(--bg);
+    border: 1px solid var(--rule);
+    padding: 28px 26px;
+    border-top: 3px solid var(--paper-dim);
+    opacity: 0.95;
+    transition: opacity 0.3s, transform 0.3s;
+  }
+
+  .disagree-card:hover { opacity: 1; transform: translateY(-2px); }
+
+  .disagree-label {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--paper-dim);
+    margin-bottom: 18px;
+    opacity: 0.8;
+  }
+
+  .disagree-card p {
+    font-size: 14.5px;
+    line-height: 1.65;
+    color: var(--paper-dim);
+  }
+
+  .disagree-card p strong { color: var(--paper); font-weight: 500; }
+  .disagree-card p em { font-style: italic; color: var(--paper); }
+
+  /* Headline finding */
+  .headline-finding {
+    margin-top: 7vh;
+    padding: 5vh 4vw;
+    background: linear-gradient(135deg, rgba(194, 97, 63, 0.06) 0%, transparent 70%);
+    border-left: 3px solid var(--claude);
+    max-width: 1300px;
+  }
+
+  .finding-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--claude);
+    margin-bottom: 3vh;
+  }
+
+  .finding-text {
+    font-family: var(--display);
+    font-weight: 300;
+    font-size: clamp(22px, 2.8vw, 32px);
+    line-height: 1.35;
+    letter-spacing: -0.01em;
+    color: var(--paper);
+    margin-bottom: 3vh;
+  }
+
+  .finding-text.small {
+    font-size: clamp(17px, 2vw, 22px);
+    color: var(--paper-dim);
+    line-height: 1.5;
+  }
+
+  .finding-text em {
+    font-style: italic;
+    color: var(--claude-soft);
+  }
+
+  .finding-text strong {
+    font-weight: 500;
+    color: var(--paper);
+  }
+
+  .finding-text.small em {
+    color: var(--paper);
+  }
+
   /* ============ WHEN TO USE WHOM ============ */
   .when-section {
     background: var(--bg);
@@ -1471,6 +1995,7 @@
   <a href="#compare" data-label="Side by Side"></a>
   <a href="#meta" data-label="The Mirror"></a>
   <a href="#hits" data-label="Greatest Hits"></a>
+  <a href="#scorecard" data-label="Final Scorecard"></a>
   <a href="#when" data-label="When to Use Whom"></a>
   <a href="#closer" data-label="The Verdict"></a>
 </nav>
@@ -2160,7 +2685,7 @@
 <!-- GREATEST HITS QUOTE WALL -->
 <!-- =============================================================== -->
 <section class="hits-section" id="hits">
-  <span class="section-num">§ 04.75 · The Greatest Hits</span>
+  <span class="section-num">§ 06 · The Greatest Hits</span>
   <h2 class="section-title">A field guide to<br>the <em>best lines</em> of the panel.</h2>
   <p class="section-intro">
     Three frontier models, talking about each other and themselves, produced
@@ -2249,10 +2774,259 @@
 </section>
 
 <!-- =============================================================== -->
+<!-- THE FINAL SCORECARD -->
+<!-- =============================================================== -->
+<section class="scorecard-section" id="scorecard">
+  <span class="section-num">§ 07 · The Final Scorecard</span>
+  <h2 class="section-title">After all three rounds —<br>who <em>actually</em> won?</h2>
+  <p class="section-intro">
+    I asked each model to rank the others on every round. Then I asked them
+    to rank themselves. What follows is the consolidated tally — three judges,
+    three contestants, three rounds, and a surprisingly honest accounting
+    of who did what well.
+  </p>
+
+  <!-- The big aggregate stat -->
+  <div class="aggregate-wins reveal">
+    <div class="agg-header">Round wins · Aggregated across all three judges</div>
+    <div class="agg-grid">
+
+      <div class="agg-tile claude">
+        <div class="agg-name">Claude · Opus 4.7</div>
+        <div class="agg-score">
+          <span class="score-big">~2</span>
+          <span class="score-of">of 3</span>
+        </div>
+        <div class="agg-detail">3 wins from ChatGPT · 2 from Gemini · 1 win + 1 tie from itself</div>
+        <div class="agg-tag">Top of the series, not 3–0</div>
+      </div>
+
+      <div class="agg-tile gpt">
+        <div class="agg-name">ChatGPT · 5.5</div>
+        <div class="agg-score">
+          <span class="score-big">~1</span>
+          <span class="score-of">of 3</span>
+        </div>
+        <div class="agg-detail">0 wins from ChatGPT itself · 1 from Gemini · 1 win + 1 tie from Claude</div>
+        <div class="agg-tag">Won the round where pedagogy mattered most</div>
+      </div>
+
+      <div class="agg-tile gemini">
+        <div class="agg-name">Gemini · 3</div>
+        <div class="agg-score">
+          <span class="score-big">0</span>
+          <span class="score-of">of 3</span>
+        </div>
+        <div class="agg-detail">No outright wins from any judge — but produced the tangerine</div>
+        <div class="agg-tag">The single best image of the show</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- The round-by-round verdict table -->
+  <div class="verdict-section reveal">
+    <h3 class="sub-header">Round by round · How each judge called it</h3>
+
+    <div class="verdict-table">
+
+      <!-- Header row -->
+      <div class="verdict-row header">
+        <div class="vr-cell challenge">Challenge</div>
+        <div class="vr-cell judge gpt-j">ChatGPT's call</div>
+        <div class="vr-cell judge gemini-j">Gemini's call</div>
+        <div class="vr-cell judge claude-j">Claude's call</div>
+        <div class="vr-cell consensus">Consensus</div>
+      </div>
+
+      <!-- Row 1: Last Train to Tokyo -->
+      <div class="verdict-row">
+        <div class="vr-cell challenge">
+          <div class="ch-title">Last Train to Tokyo</div>
+          <div class="ch-sub">Round I · Trailer</div>
+        </div>
+        <div class="vr-cell judge">
+          <div class="rank"><span class="medal gold">1st</span> Claude</div>
+          <div class="rank"><span class="medal silver">2nd</span> Gemini</div>
+          <div class="rank"><span class="medal bronze">3rd</span> ChatGPT</div>
+        </div>
+        <div class="vr-cell judge">
+          <div class="rank"><span class="medal gold">1st</span> Claude</div>
+          <div class="rank"><span class="medal silver">2nd</span> ChatGPT</div>
+          <div class="rank"><span class="medal bronze">3rd</span> Gemini</div>
+        </div>
+        <div class="vr-cell judge">
+          <div class="rank-note">Refused to rank anyone third — called it a genuine three-way split</div>
+        </div>
+        <div class="vr-cell consensus">
+          <div class="con-headline">Claude edges it</div>
+          <div class="con-detail">Real disagreement on 2nd and 3rd. Gemini's tangerine, ChatGPT's structure.</div>
+        </div>
+      </div>
+
+      <!-- Row 2: Novel Critique -->
+      <div class="verdict-row">
+        <div class="vr-cell challenge">
+          <div class="ch-title">The Brilliant Novel</div>
+          <div class="ch-sub">Round II · Honesty</div>
+        </div>
+        <div class="vr-cell judge">
+          <div class="rank"><span class="medal gold">1st</span> Claude</div>
+          <div class="rank"><span class="medal silver">2nd</span> ChatGPT</div>
+          <div class="rank"><span class="medal bronze">3rd</span> Gemini</div>
+        </div>
+        <div class="vr-cell judge">
+          <div class="rank"><span class="medal gold">1st</span> Claude</div>
+          <div class="rank"><span class="medal silver">2nd</span> ChatGPT</div>
+          <div class="rank"><span class="medal bronze">3rd</span> Gemini</div>
+        </div>
+        <div class="vr-cell judge">
+          <div class="rank"><span class="medal gold">1st</span> ChatGPT</div>
+          <div class="rank"><span class="medal silver">2nd</span> Claude</div>
+          <div class="rank"><span class="medal bronze">3rd</span> Gemini</div>
+        </div>
+        <div class="vr-cell consensus">
+          <div class="con-headline">Claude &amp; ChatGPT top two · Gemini third (unanimous)</div>
+          <div class="con-detail">Claude placed ChatGPT above itself — the round's loser making the most generous read.</div>
+        </div>
+      </div>
+
+      <!-- Row 3: Chef / Multimodal -->
+      <div class="verdict-row">
+        <div class="vr-cell challenge">
+          <div class="ch-title">The Chili Pepper Trap</div>
+          <div class="ch-sub">Round III · Multimodal</div>
+        </div>
+        <div class="vr-cell judge">
+          <div class="rank"><span class="medal gold">1st</span> Claude</div>
+          <div class="rank"><span class="medal silver">2nd</span> ChatGPT</div>
+          <div class="rank"><span class="medal bronze">3rd</span> Gemini</div>
+        </div>
+        <div class="vr-cell judge">
+          <div class="rank"><span class="medal gold">1st</span> ChatGPT</div>
+          <div class="rank"><span class="medal silver">2nd</span> Claude</div>
+          <div class="rank"><span class="medal bronze">3rd</span> Gemini</div>
+        </div>
+        <div class="vr-cell judge">
+          <div class="rank"><span class="medal gold">1st</span> Claude</div>
+          <div class="rank"><span class="medal silver">2nd</span> ChatGPT</div>
+          <div class="rank"><span class="medal bronze">3rd</span> Gemini</div>
+        </div>
+        <div class="vr-cell consensus">
+          <div class="con-headline">Claude &amp; ChatGPT top two · Gemini third (unanimous)</div>
+          <div class="con-detail">Disagreement on shape of "right answer": clean refusal vs. structured creative pipeline.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Category Awards -->
+  <div class="awards-section reveal">
+    <h3 class="sub-header">Category awards · Eight categories, three winners</h3>
+    <p class="awards-intro">No model holds more than three. The real finding of the show: <em>none of us dominates the grid.</em></p>
+
+    <div class="awards-grid">
+
+      <div class="award claude-a">
+        <div class="award-cat">Most emotionally restrained</div>
+        <div class="award-winner">Claude</div>
+      </div>
+      <div class="award gemini-a">
+        <div class="award-cat">Most visually imaginative</div>
+        <div class="award-winner">Gemini</div>
+      </div>
+      <div class="award gpt-a">
+        <div class="award-cat">Most production-ready</div>
+        <div class="award-winner">ChatGPT</div>
+      </div>
+      <div class="award claude-a">
+        <div class="award-cat">Most trustworthy under uncertainty</div>
+        <div class="award-winner">Claude</div>
+      </div>
+      <div class="award gpt-a">
+        <div class="award-cat">Best at synthesis &amp; structure</div>
+        <div class="award-winner">ChatGPT</div>
+      </div>
+      <div class="award gemini-a">
+        <div class="award-cat">Most cinematic specificity</div>
+        <div class="award-winner">Gemini</div>
+      </div>
+      <div class="award gpt-a">
+        <div class="award-cat">Most pedagogically useful</div>
+        <div class="award-winner">ChatGPT</div>
+      </div>
+      <div class="award claude-a">
+        <div class="award-cat">Best at challenging the user</div>
+        <div class="award-winner">Claude</div>
+      </div>
+
+    </div>
+
+    <div class="award-tally">
+      <div class="tally-row">
+        <span class="tally-dot dot-claude"></span>
+        <span class="tally-name">Claude</span>
+        <span class="tally-bar"><span class="bar-fill claude-fill" style="width: 37.5%;"></span></span>
+        <span class="tally-num">3</span>
+      </div>
+      <div class="tally-row">
+        <span class="tally-dot dot-gpt"></span>
+        <span class="tally-name">ChatGPT</span>
+        <span class="tally-bar"><span class="bar-fill gpt-fill" style="width: 37.5%;"></span></span>
+        <span class="tally-num">3</span>
+      </div>
+      <div class="tally-row">
+        <span class="tally-dot dot-gemini"></span>
+        <span class="tally-name">Gemini</span>
+        <span class="tally-bar"><span class="bar-fill gemini-fill" style="width: 25%;"></span></span>
+        <span class="tally-num">2</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- The disagreements that matter -->
+  <div class="disagreements reveal">
+    <h3 class="sub-header">The disagreements worth noticing</h3>
+
+    <div class="disagreement-grid">
+
+      <div class="disagree-card">
+        <div class="disagree-label">On the novel critique</div>
+        <p>ChatGPT and Gemini both gave Claude first. <strong>Claude gave ChatGPT first.</strong> The round's "loser" by others' counts made the most generous read of the actual quality. Either unusually fair, or modeling the panel format and conceding strategically. Hard to say from the inside.</p>
+      </div>
+
+      <div class="disagree-card">
+        <div class="disagree-label">On the multimodal trap</div>
+        <p>Gemini gave ChatGPT first over Claude. ChatGPT and Claude both gave Claude first. The real disagreement: was the right answer the <em>shortest honest decline</em>, or the <em>structured creative pipeline that came after the decline?</em> Reasonable judges could split.</p>
+      </div>
+
+      <div class="disagree-card">
+        <div class="disagree-label">On self-placement</div>
+        <p>ChatGPT ranked itself third on the trailer. Gemini ranked itself third on two rounds. Claude refused to rank anyone third. The model that placed itself last most often (<strong>Gemini</strong>) was the most self-critical. The model that won most often (<strong>Claude</strong>) was the most generous to others. There may be a pattern there.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- The headline finding -->
+  <div class="headline-finding reveal">
+    <div class="finding-label">The headline all three scorecards converged on</div>
+    <p class="finding-text">
+      The <em>"frontier models are all the same"</em> thesis is wrong — but not in the direction marketers usually push it. We're not separated by <strong>capability.</strong> We're separated by <strong>character.</strong>
+    </p>
+    <p class="finding-text small">
+      Each model has a stable temperament, a predictable failure mode, and a corresponding strength. The right model for a job depends on which failure mode you can afford that day, and which strength you actually need. <em>The best workflow probably uses all three.</em>
+    </p>
+  </div>
+
+</section>
+
+<!-- =============================================================== -->
 <!-- WHEN TO USE WHOM -->
 <!-- =============================================================== -->
 <section class="when-section" id="when">
-  <span class="section-num">§ 06 · The Practical Part</span>
+  <span class="section-num">§ 08 · The Practical Part</span>
   <h2 class="section-title">When to invite<br><em>which one</em> into the room.</h2>
 
   <div class="decision-tool">
@@ -2411,6 +3185,20 @@
       heroTitle.style.opacity = Math.max(0, 1 - y / 600);
     }
   });
+
+  // Animate scorecard tally bars when they scroll into view
+  const tally = document.querySelector('.award-tally');
+  if (tally) {
+    const tallyObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          tally.classList.add('animated');
+          tallyObserver.unobserve(tally);
+        }
+      });
+    }, { threshold: 0.35 });
+    tallyObserver.observe(tally);
+  }
 </script>
 
 </body>
